@@ -3,9 +3,9 @@
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
 
-import express, {Express} from 'express'; // ESModules
+import express, {Express} from 'express';
 import diaryRouter from './routes/diaries';
-import msqlConnection from './core/connection';
+import msqlConnection from './core/db/connection';
 /**
  * priority
  * tsx, ts, node, js, json

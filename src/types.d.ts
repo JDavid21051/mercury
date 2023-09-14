@@ -3,7 +3,7 @@
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
 
-import {WeatherEnum, VisibilityEnum} from './enums';
+import {WeatherEnum, VisibilityEnum} from './utils/enums';
 
 export interface DiaryEntry {
     id: number;

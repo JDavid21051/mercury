@@ -3,7 +3,7 @@
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
 
-import {NewDiaryEntry} from './types';
+import {NewDiaryEntry} from '../types';
 import {WeatherEnum, VisibilityEnum} from './enums';
 
 const parseComment = (commentFromRequest: any): string => {

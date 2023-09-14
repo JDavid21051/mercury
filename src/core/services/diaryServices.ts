@@ -3,7 +3,7 @@
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
 
-import {DiaryEntry, NewDiaryEntry, NonSensitiveInfoDiaryEntry} from '../types';
+import {DiaryEntry, NewDiaryEntry, NonSensitiveInfoDiaryEntry} from '../../types';
 import diaryData from './diaries.json';
 
 const diaries: DiaryEntry[] = diaryData as DiaryEntry[];

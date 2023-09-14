@@ -3,24 +3,26 @@
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
 
+/*
+ * Project:      mercury
+ * Developed by: Juan David Pelaez Cumbe
+ * Date:         13/09/23 - 11:29 PM
+ * Module name:  supplier.ts
+ * File name:    supplier.ts
+ * IDE:          WebStorm
+ */
+
 import express, {Router} from 'express';
 import * as diaryServices from '../core/services/diaryServices';
 import toNewDiaryEntry from '../utils/utils';
-import connection from '../core/db/connection';
-import {Connection} from 'mysql';
 
-const router: Router = express.Router();
-const iMsql: Connection = connection;
+const supplierRouter: Router = express.Router();
 
-router.get('/', (_req, res) => {
+supplierRouter.get('/', (_req, res) => {
     res.send(diaryServices.getEntriesWithoutSensitiveInfo());
-    iMsql.query('SELECT name, nit from supplier', (err, rows, _fields) => {
-        if (err) throw err
-        console.log('The solution is: ', rows)
-    })
 });
 
-router.get('/:id', (req, res) => {
+supplierRouter.get('/:id', (req, res) => {
     const diary = diaryServices.findById(+req.params.id);
 
     return (diary != null)
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
         : res.sendStatus(404);
 });
 
-router.post('/', (req, res) => {
+supplierRouter.post('/', (req, res) => {
     try {
         const newDiaryEntry = toNewDiaryEntry(req.body);
 
@@ -40,4 +42,4 @@ router.post('/', (req, res) => {
     }
 });
 
-export default router;
+export default supplierRouter;
