@@ -2,21 +2,21 @@
  * @JDavid21051. Copyright ©. 2023. All rights reserved.
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
+/*
+ * priority
+ * tsx, ts, node, jsx, js, json
+ */
 
 import express, {Express} from 'express';
 import diaryRouter from './routes/diaries';
 import msqlConnection from './core/db/connection';
-/**
- * priority
- * tsx, ts, node, js, json
- */
 
 const appServer: Express = express();
-appServer.use(express.json()); // middleware que transforma la req.body a un json
-
 const PORT = 3000;
 
 msqlConnection.connect();
+
+appServer.use(express.json()); // middleware que transforma la req.body a un json
 
 appServer.get('/ping', (_req, res) => {
     const pongResult = {
