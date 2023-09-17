@@ -10,6 +10,7 @@
 import express, {Express} from 'express';
 import diaryRouter from './routes/diaries';
 import msqlConnection from './core/db/connection';
+import supplier_router from './routes/supplier';
 
 const appServer: Express = express();
 const PORT = 3000;
@@ -29,6 +30,7 @@ appServer.get('/ping', (_req, res) => {
 });
 
 appServer.use('/api/diaries', diaryRouter);
+appServer.use('/api/supplier', supplier_router);
 
 appServer.listen(PORT, (): void => {
     console.log(`Server running on port ${PORT}`);

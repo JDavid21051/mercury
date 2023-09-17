@@ -13,12 +13,8 @@
  */
 
 import mysql from 'mysql';
+import {DEFAULT_CONFIG} from './mysql-config';
 
-const msqlConnection: mysql.Connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'mercury'
-})
+const msqlConnection: mysql.Connection = mysql.createConnection(DEFAULT_CONFIG);
 
 export default msqlConnection;

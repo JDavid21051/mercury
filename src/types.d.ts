@@ -3,7 +3,7 @@
  * @JDavid21051. Copyright ©. 2023. Todos los derechos reservados.
  */
 
-import {WeatherEnum, VisibilityEnum} from './utils/enums';
+import {VisibilityEnum, WeatherEnum} from './utils/enums';
 
 export interface DiaryEntry {
     id: number;
@@ -31,8 +31,10 @@ export interface IStore {
     legal_email: string;
     legal_phone: string;
 }
+
 export interface IStoreUpdate extends Omit<IStore, 'uuid' | 'open_at'> {
 }
+
 export interface IStoreControl extends Omit<IStoreUpdate, 'id'> {
 }
 
@@ -51,18 +53,29 @@ export interface ISite {
     manager_name: string;
     manager_email: string;
 }
-export interface ISiteUpdate extends Omit<ISite, 'uuid'>{ }
-export interface ISiteControl extends Omit<ISiteUpdate, 'id'>{ }
+
+export interface ISiteUpdate extends Omit<ISite, 'uuid'> {
+}
+
+export interface ISiteControl extends Omit<ISiteUpdate, 'id'> {
+}
 
 
-export interface ISupplier {
+export interface ISupplierFake {
     id: number;
     uuid: string;
     name: string;
     nit: string;
 }
-export interface ISupplierUpdate extends Omit<ISupplier, 'uuid'>{ }
-export interface ISupplierControl extends Omit<ISupplierUpdate, 'id'>{ }
+
+export interface ISupplier {
+    id: number;
+    name: string;
+    nit: string;
+}
+
+export interface ISupplierControl extends Omit<ISupplier, 'id'> {
+}
 
 
 export interface IBill {
@@ -77,8 +90,12 @@ export interface IBill {
     buy_at: Date;
     register_at: Date;
 }
-export interface IBillUpdate extends Omit<IBill, 'uuid' | 'register_at'>{ }
-export interface IBillControl extends Omit<IBillUpdate, 'id'>{ }
+
+export interface IBillUpdate extends Omit<IBill, 'uuid' | 'register_at'> {
+}
+
+export interface IBillControl extends Omit<IBillUpdate, 'id'> {
+}
 
 export interface IProduct {
     id: number;
@@ -92,5 +109,9 @@ export interface IProduct {
     content: string;
     content_type: string;
 }
-export interface IProductUpdate extends Omit<IProduct, 'uuid' | 'register_at'>{ }
-export interface IProductControl extends Omit<IProductUpdate, 'id'>{ }
+
+export interface IProductUpdate extends Omit<IProduct, 'uuid' | 'register_at'> {
+}
+
+export interface IProductControl extends Omit<IProductUpdate, 'id'> {
+}

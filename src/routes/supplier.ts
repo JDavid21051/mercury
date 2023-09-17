@@ -12,17 +12,22 @@
  * IDE:          WebStorm
  */
 
-import express, {Router} from 'express';
-import * as diaryServices from '../core/services/diaryServices';
-import toNewDiaryEntry from '../utils/utils';
+import {Router} from 'express';
+import * as supplierService from '../core/services/supplier-service';
 
-const supplierRouter: Router = express.Router();
+const supplierRouter: Router = Router();
 
-supplierRouter.get('/', (_req, res) => {
-    res.send(diaryServices.getEntriesWithoutSensitiveInfo());
+supplierRouter.get('/', (_req, response) => {
+    try {
+        response.send(supplierService.findAll());
+        console.log(supplierService.findAll());
+    } catch (e) {
+        response.status(404).json({error: JSON.parse(e)});
+    }
 });
 
-supplierRouter.get('/:id', (req, res) => {
+/*
+supplier_router.get('/:id', (req, res) => {
     const diary = diaryServices.findById(+req.params.id);
 
     return (diary != null)
@@ -30,7 +35,7 @@ supplierRouter.get('/:id', (req, res) => {
         : res.sendStatus(404);
 });
 
-supplierRouter.post('/', (req, res) => {
+supplier_router.post('/', (req, res) => {
     try {
         const newDiaryEntry = toNewDiaryEntry(req.body);
 
@@ -40,6 +45,6 @@ supplierRouter.post('/', (req, res) => {
     } catch (e) {
         res.status(400).send(e.message);
     }
-});
+});*/
 
 export default supplierRouter;
