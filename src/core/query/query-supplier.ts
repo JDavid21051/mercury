@@ -12,10 +12,9 @@
  * IDE:          WebStorm
  */
 
+import { queryMasterControl } from './query-master'
 
-import {queryMasterControl} from './query-master';
-
-export const querySelect = () => {
-    // TODO Imprimir query sql funcionando en formato correcto
-    return queryMasterControl.supplier.getAll();
-};
+export const querySelect = (): string => {
+  // TODO Imprimir query sql funcionando en formato correcto
+  return queryMasterControl.supplier.getAll()
+}

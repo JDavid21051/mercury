@@ -12,9 +12,10 @@
  * IDE:          WebStorm
  */
 
-import mysql from 'mysql';
-import {DEFAULT_CONFIG} from './mysql-config';
-
-const msqlConnection: mysql.Connection = mysql.createConnection(DEFAULT_CONFIG);
-
-export default msqlConnection;
+export const DEFAULT_CONFIG = {
+  host: 'localhost',
+  user: 'root',
+  port: 3306,
+  password: '',
+  database: 'moviesdb'
+}

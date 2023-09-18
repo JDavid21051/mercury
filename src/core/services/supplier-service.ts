@@ -12,18 +12,14 @@
  * IDE:          WebStorm
  */
 
-import * as querySupplier from '../query/query-supplier';
-import {FieldInfo, MysqlError} from 'mysql';
-import msqlConnection from '../db/connection';
-
 export const findAll = (): any => {
-    try {
-        msqlConnection.query(querySupplier.querySelect(), (error: MysqlError | null, results, _fieldList: FieldInfo[] | undefined) => {
-            if (error) throw new Error('Error getting supplier list');
-            console.log(results);
-            return results;
-        });
-    } catch (e) {
-        throw new Error('Error getting supplier list');
-    }
-};
+  try {
+    /* msqlConnection.query(querySupplier.querySelect(), (error: MysqlError | null, results, _fieldList: FieldInfo[] | undefined) => {
+      if (error) throw new Error('Error getting supplier list')
+      console.log(results)
+      return results
+    }) */
+  } catch (e) {
+    throw new Error('Error getting supplier list')
+  }
+}

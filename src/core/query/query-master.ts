@@ -12,12 +12,12 @@
  * IDE:          WebStorm
  */
 
-import {supplierFields} from '../db/fields';
+import { supplierFields } from '../db/fields'
 
 export const queryMasterControl = {
-    supplier: {
-        getAll: () => {
-            return 'SELECT ' + supplierFields.toString() + ' FROM `supplier`;';
-        }
+  supplier: {
+    getAll: () => {
+      return 'SELECT ' + supplierFields.toString() + ' FROM `supplier`;'
     }
-};
+  }
+}

@@ -12,39 +12,23 @@
  * IDE:          WebStorm
  */
 
-import {Router} from 'express';
-import * as supplierService from '../core/services/supplier-service';
+import { Router } from 'express'
+import { SupplierController } from '../controllers/supplier-controller'
 
-const supplierRouter: Router = Router();
+const controller = SupplierController
 
-supplierRouter.get('/', (_req, response) => {
-    try {
-        response.send(supplierService.findAll());
-        console.log(supplierService.findAll());
-    } catch (e) {
-        response.status(404).json({error: JSON.parse(e)});
-    }
-});
+export const supplierRouter: Router = Router()
 
+supplierRouter.get('/', (req, res) => {
+  void controller.getAll(req, res)
+})
 /*
-supplier_router.get('/:id', (req, res) => {
-    const diary = diaryServices.findById(+req.params.id);
-
-    return (diary != null)
-        ? res.send(diary)
-        : res.sendStatus(404);
-});
-
-supplier_router.post('/', (req, res) => {
-    try {
-        const newDiaryEntry = toNewDiaryEntry(req.body);
-
-        const addedDiaryEntry = diaryServices.addDiary(newDiaryEntry);
-
-        res.json(addedDiaryEntry);
-    } catch (e) {
-        res.status(400).send(e.message);
-    }
-});*/
-
-export default supplierRouter;
+supplierRouter.get('/', (_req: Request<any>, response) => {
+  try {
+    response.send(supplierService.findAll())
+    console.log(supplierService.findAll())
+  } catch (e) {
+    response.status(404).json({ error: JSON.parse(e) })
+  }
+}) */
+export default supplierRouter

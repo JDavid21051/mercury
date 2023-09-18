@@ -13,8 +13,9 @@
  */
 
 export const DEFAULT_CONFIG = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'mercury'
-};
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'mercury',
+  port: 3306
+}
