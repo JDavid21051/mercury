@@ -1,42 +1,42 @@
-/*
- * @JDavid21051. Copyright (c) 2023. All rights reserved.
- * @JDavid21051. Copyright (c) 2023. Todos los derechos reservados.
- */
+import mysql from 'mysql2/promise'
 
-/*
- * Project:      mercury
- * Developed by: Juan David Pelaez Cumbe
- * Date:         17/09/23 - 11:52 PM
- * Module name:  supplier-model.ts
- * File name:    supplier-model.ts
- * IDE:          WebStorm
- */
+const DEFAULT_CONFIG = {
+  host: 'localhost',
+  user: 'root',
+  port: 3306,
+  password: '',
+  database: 'mercuryBillDB'
+}
+const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
 
-import mysql, { Connection } from 'mysql2/promise'
-import { DEFAULT_CONFIG } from '../core/db/mysql-config'
-import { querySelect } from '../core/query'
+const connection = await mysql.createConnection(connectionString)
 
-let connection: Connection
+export class MovieModel {
+  static async getAll ({ genre }) {
+    console.log('getAll')
 
-export class SupplierModel {
-
-  constructor () {
-    void this.setConnection().then()
-  }
-
-  async setConnection (): Promise<void> {
-    connection = await mysql.createConnection(DEFAULT_CONFIG)
-  }
-
-  static async getAll (): Promise<any> {
-    const [supplier] = await connection.query(
-      querySelect()
+    // get genre ids from database table using genre names
+    const [genres] = await connection.query(
+      'SELECT name FROM supplier '
     )
-    console.log(supplier)
-    return supplier
+
+    // no genre found
+    if (genres.length === 0) return []
+
+    // get the id from the first genre result
+
+    // get all movies ids from database table
+    // la query a movie_genres
+    // join
+    // y devolver resultados..
+    return genres
+
+    /* const [movies] = await connection.query(
+      'SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id FROM movie;'
+    ) */
   }
 
-  /* static async getById ({ id }) {
+  static async getById ({ id }) {
     const [movies] = await connection.query(
       `SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id
         FROM movie WHERE id = UUID_TO_BIN(?);`,
@@ -96,5 +96,5 @@ export class SupplierModel {
     input
   }) {
     // ejercicio fácil: crear el update
-  } */
+  }
 }

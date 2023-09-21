@@ -1,0 +1,12 @@
+### Recuperar todos los provedores                     v
+GET http://localhost:3000/api/supplier
+
+### Crear un proveedor
+POST http://localhost:3000/api/supplier/create
+Content-Type: application/json
+
+{
+  "name": "Juan pelaez Cumbe",
+  "nit": "285651111"
+}
+
