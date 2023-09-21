@@ -13,8 +13,6 @@ const connection = await mysql.createConnection(connectionString)
 
 export class MovieModel {
   static async getAll ({ genre }) {
-    console.log('getAll')
-
     // get genre ids from database table using genre names
     const [genres] = await connection.query(
       'SELECT name FROM supplier '

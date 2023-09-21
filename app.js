@@ -4,7 +4,6 @@
  */
 
 import express, { json } from 'express' // require -> commonJS
-import { createMovieRouter } from './src/core/routes/movies.js'
 import { corsMiddleware } from './src/core/middlewares/cors.js'
 import { createSupplierRouter } from './src/core/routes/supplier-routes.js'
 import 'dotenv/config'
@@ -15,12 +14,10 @@ export const createApp = ({
 }) => {
   const app = express()
   const PORT = process.env.PORT ?? 3000
-  
+
   app.use(json())
   app.use(corsMiddleware())
   app.disable('x-powered-by')
-
-  app.use('/api/movies', createMovieRouter({ model }))
 
   app.use('/api/supplier', createSupplierRouter({ supplier }))
 
@@ -30,6 +27,6 @@ export const createApp = ({
   })
 
   app.listen(PORT, () => {
-    console.log(`server listening on port ${PORT} on http://localhost:${PORT} path`)
+    // console.log(`server listening on port ${PORT} on http://localhost:${PORT} path`)
   })
 }

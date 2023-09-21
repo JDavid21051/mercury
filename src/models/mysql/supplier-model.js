@@ -30,7 +30,7 @@ export class SupplierModel {
       return suppliers
     } catch (e) {
       console.log(e)
-      throw new Error('Error creating movie')
+      throw new Error('Error creating a supplier')
     }
   }
 
