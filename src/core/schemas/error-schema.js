@@ -15,12 +15,16 @@
 export const ERRORS_SCHEMA = {
   supplier: {
     name: {
-      invalid_type_error: 'Supplier name must be a string',
+      invalid_type_error: 'Supplier name must be a string.',
       required_error: 'Supplier name is required.'
     },
     nit: {
-      invalid_type_error: 'Supplier nit must be a string',
+      invalid_type_error: 'Supplier nit must be a string.',
       required_error: 'Supplier nit is required.'
+    },
+    id: {
+      invalid_type_error: 'Supplier id must be a uuid.',
+      required_error: 'Supplier id is required.'
     }
   }
 }

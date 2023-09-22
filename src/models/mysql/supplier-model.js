@@ -14,23 +14,37 @@
 
 import mysql from 'mysql2/promise'
 import { randomUUID } from 'node:crypto'
-import { DEFAULT_CONFIG } from '../../core/bd/connection-config.js'
+import { DEFAULT_DB_CONFIG } from '../../core/bd/connection-config.js'
 import { FIELD_NAME_CONTROL } from '../../core/bd/name-field.const.ts.js'
 
-const connection = await mysql.createConnection(DEFAULT_CONFIG)
+const connection = await mysql.createConnection(process.env.DATABASE_URL ?? DEFAULT_DB_CONFIG)
 
 export class SupplierModel {
   static async getAll () {
     try {
       const [suppliers] = await connection.query(
-        'SELECT nit, name, BIN_TO_UUID(uuid) uuid FROM supplier Order BY ? DESC',
+        'SELECT BIN_TO_UUID(uuid) as id, nit, name FROM supplier Order BY ? DESC;',
         [FIELD_NAME_CONTROL.supplier.order]
       )
       if (suppliers.length === 0) return []
       return suppliers
     } catch (e) {
       console.log(e)
-      throw new Error('Error creating a supplier')
+      throw new Error('Error listing a supplier')
+    }
+  }
+
+  static async getById ({ id }) {
+    try {
+      const [suppliers] = await connection.query(
+        'SELECT BIN_TO_UUID(uuid) as id, nit, name FROM supplier WHERE uuid = id Order BY ? DESC;',
+        [FIELD_NAME_CONTROL.supplier.order]
+      )
+      if (suppliers.length === 0) return []
+      return suppliers
+    } catch (e) {
+      console.log(e)
+      throw new Error('Error listing a supplier')
     }
   }
 
@@ -41,6 +55,15 @@ export class SupplierModel {
       ]
     )
     console.log(suppliers)
+    return suppliers
+  }
+
+  static async update (data) {
+    const [suppliers] = await connection.query(
+      'INSERT INTO supplier (uuid, name, nit) VALUES (uuid_to_bin(?), ? ,?)', [
+        randomUUID(), data.name, data.nit
+      ]
+    )
     return suppliers
   }
 

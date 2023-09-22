@@ -12,7 +12,7 @@
  * IDE:          WebStorm
  */
 
-import { validateSupplier } from '../core/schemas/supplier-schema.js'
+import { validateCreateSupplier, validateUpdateSupplier } from '../core/schemas/supplier-schema.js'
 
 export class SupplierController {
   constructor ({ supplier }) {
@@ -20,16 +20,30 @@ export class SupplierController {
   }
 
   getAll = async (req, res) => {
-    const movies = await this.supplierModel.getAll()
-    res.json(movies)
+    const supplierList = await this.supplierModel.getAll()
+    res.json(supplierList)
+  }
+
+  getById = async (req, res) => {
+    const supplierList = await this.supplierModel.getAll()
+    res.json(supplierList)
   }
 
   create = async (req, res) => {
-    const result = await validateSupplier(req.body)
+    const result = await validateCreateSupplier(req.body)
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
-    const newMovie = await this.supplierModel.create(result.data)
-    res.status(201).json(newMovie)
+    const newSupplier = await this.supplierModel.create(result.data)
+    res.status(201).json(newSupplier)
+  }
+
+  update = async (req, res) => {
+    const result = await validateUpdateSupplier(req.body)
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message) })
+    }
+    const supplierUpdated = await this.supplierModel.update(result.data)
+    res.status(201).json(supplierUpdated)
   }
 }

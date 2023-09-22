@@ -6,9 +6,9 @@
 import express, { json } from 'express' // require -> commonJS
 import { corsMiddleware } from './src/core/middlewares/cors.js'
 import { createSupplierRouter } from './src/core/routes/supplier-routes.js'
+import 'dotenv/config'
 
 export const createApp = ({
-  model,
   supplier
 }) => {
   const app = express()

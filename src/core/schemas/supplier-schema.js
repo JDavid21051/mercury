@@ -14,11 +14,29 @@
 import z from 'zod'
 import { ERRORS_SCHEMA } from './error-schema.js'
 
-const supplierSchema = z.object({
+const supplierField = {
+  name: z.string(ERRORS_SCHEMA.supplier.name).max(250),
+  nit: z.string(ERRORS_SCHEMA.supplier.nit).min(9).max(10)
+}
+
+const supplierCreateSchema = z.object(supplierField)
+const supplierUpdateSchema = z.object(
+  {
+    id: z.string(ERRORS_SCHEMA.supplier.id).uuid(),
+    ...supplierField
+  })
+
+/*
+const supplierUpdateSchema = z.object({
+  id: z.string(ERRORS_SCHEMA.supplier),
   name: z.string(ERRORS_SCHEMA.supplier.name),
   nit: z.string(ERRORS_SCHEMA.supplier.nit).min(9).max(10)
-})
+}) */
 
-export async function validateSupplier (schema) {
-  return supplierSchema.safeParseAsync(schema)
+export async function validateCreateSupplier (schema) {
+  return supplierCreateSchema.safeParseAsync(schema)
+}
+
+export async function validateUpdateSupplier (schema) {
+  return supplierUpdateSchema.safeParseAsync(schema)
 }

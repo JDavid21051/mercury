@@ -22,6 +22,7 @@ export const createSupplierRouter = ({ supplier }) => {
 
   moviesRouter.get('/', controller.getAll)
   moviesRouter.post('/create', controller.create)
+  moviesRouter.post('/create', controller.update)
 
   return moviesRouter
 }
