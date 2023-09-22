@@ -17,7 +17,7 @@ import { randomUUID } from 'node:crypto'
 import { DEFAULT_CONFIG } from '../../core/bd/connection-config.js'
 import { FIELD_NAME_CONTROL } from '../../core/bd/name-field.const.ts.js'
 
-const connection = await mysql.createConnection(process.env.DATABASE_URL ?? DEFAULT_CONFIG)
+const connection = await mysql.createConnection(DEFAULT_CONFIG)
 
 export class SupplierModel {
   static async getAll () {

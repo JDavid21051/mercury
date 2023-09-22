@@ -13,9 +13,9 @@
  */
 
 export const DEFAULT_CONFIG = {
-  host: 'localhost',
+  host: 'containers-us-west-120.railway.app',
   user: 'root',
-  port: 3306,
-  password: '',
-  database: 'mercuryBillDB'
+  port: 7024,
+  password: 'eOrfMaf4mgg87yOGCHOH',
+  database: 'railway'
 }
