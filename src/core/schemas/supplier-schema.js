@@ -16,7 +16,7 @@ import { ERRORS_SCHEMA } from './error-schema.js'
 
 const supplierField = {
   name: z.string(ERRORS_SCHEMA.supplier.name).max(250),
-  nit: z.string(ERRORS_SCHEMA.supplier.nit).min(9).max(10)
+  nit: z.string(ERRORS_SCHEMA.supplier.nit).min(9).max(9)
 }
 
 const supplierId = {

@@ -13,8 +13,9 @@
  */
 
 export const DEFAULT_DB_CONFIG = {
-  database: 'mercuryDB',
-  username: 'root',
+  database: 'mercuryBillDB',
+  user: 'root',
   host: 'localhost',
+  port: 3306,
   password: ''
 }
