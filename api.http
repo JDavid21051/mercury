@@ -1,13 +1,56 @@
+### Ping
+GET http://localhost:3000/api/ping
+
+
 ### Recuperar todos los provedores                     v
 GET http://localhost:3000/api/supplier
-
 
 ### Crear un proveedor
 POST http://localhost:3000/api/supplier/create
 Content-Type: application/json
 
 {
+  "name": "Raul martinez",
+  "nit": "1234512345"
+}
+
+### Consultar un proveedor por id
+GET http://localhost:3000/api/supplier/489dee1f-9601-461d-9547-987d5fbf1f2e
+Content-Type: application/json
+
+### Actualziar un proveedor
+PUT http://localhost:3000/api/supplier/id
+Content-Type: application/json
+
+{
+  "uuid": "623c4cb2-b9fe-4e52-ac50-ed8401df22f8",
   "name": "Juan Pelaez",
   "nit": "285651111"
 }
 
+### Delete provider
+PUT http://localhost:3000/api/supplier/id
+Content-Type: application/json
+
+[
+  {
+    "id": "489dee1f-9601-461d-9547-987d5fbf1f2e",
+    "nit": "285651111",
+    "name": "Juan Pelaez"
+  },
+  {
+    "id": "540dc78e-adff-4826-af93-1f63f84e6277",
+    "nit": "285651111",
+    "name": "Juan Pelaez"
+  },
+  {
+    "id": "623c4cb2-b9fe-4e52-ac50-ed8401df22f8",
+    "nit": "285651111",
+    "name": "Juan Pelaez"
+  },
+  {
+    "id": "a2f0e243-5dc8-4342-9708-8061e754b1b2",
+    "nit": "285651111",
+    "name": "David Pelaez"
+  }
+]

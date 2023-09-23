@@ -17,12 +17,12 @@ import { SupplierController } from '../../controllers/supplier-controller.js'
 
 export const createSupplierRouter = ({ supplier }) => {
   const moviesRouter = Router()
-
   const controller = new SupplierController({ supplier })
 
   moviesRouter.get('/', controller.getAll)
+  moviesRouter.get('/:id', controller.getById)
   moviesRouter.post('/create', controller.create)
-  moviesRouter.post('/create', controller.update)
+  moviesRouter.put('/update', controller.update)
 
   return moviesRouter
 }

@@ -23,8 +23,13 @@ export const ERRORS_SCHEMA = {
       required_error: 'Supplier nit is required.'
     },
     id: {
-      invalid_type_error: 'Supplier id must be a uuid.',
-      required_error: 'Supplier id is required.'
+      string: {
+        invalid_type_error: 'Supplier id must be a uuid.',
+        required_error: 'Supplier id is required.'
+      },
+      uuid: {
+        message: 'Supplier id must be a uuid.'
+      }
     }
   }
 }

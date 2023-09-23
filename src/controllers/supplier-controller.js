@@ -12,10 +12,12 @@
  * IDE:          WebStorm
  */
 
-import { validateCreateSupplier, validateUpdateSupplier } from '../core/schemas/supplier-schema.js'
+import { validateGetIdSupplier, validateUpdateSupplier } from '../core/schemas/supplier-schema.js'
+import { BaseController } from './base-controller.js'
 
-export class SupplierController {
+export class SupplierController extends BaseController {
   constructor ({ supplier }) {
+    super()
     this.supplierModel = supplier
   }
 
@@ -25,12 +27,21 @@ export class SupplierController {
   }
 
   getById = async (req, res) => {
-    const supplierList = await this.supplierModel.getAll()
-    res.json(supplierList)
+    const result = await validateGetIdSupplier(req.params)
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message ?? result) })
+    }
+
+    const supplier = await this.supplierModel.getById(result.data)
+    if (supplier.length === 0) {
+      return res.status(400).json({ error: { message: 'Error getting supervisor' } })
+    }
+
+    res.json(supplier[0])
   }
 
   create = async (req, res) => {
-    const result = await validateCreateSupplier(req.body)
+    const result = await validateGetIdSupplier(req.body)
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }

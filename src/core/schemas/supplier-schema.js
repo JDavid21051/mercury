@@ -19,10 +19,15 @@ const supplierField = {
   nit: z.string(ERRORS_SCHEMA.supplier.nit).min(9).max(10)
 }
 
+const supplierId = {
+  id: z.string(ERRORS_SCHEMA.supplier.id.string).uuid(ERRORS_SCHEMA.supplier.id.uuid)
+}
+
+const supplierGetIdSchema = z.object(supplierId)
 const supplierCreateSchema = z.object(supplierField)
 const supplierUpdateSchema = z.object(
   {
-    id: z.string(ERRORS_SCHEMA.supplier.id).uuid(),
+    ...supplierId,
     ...supplierField
   })
 
@@ -40,3 +45,8 @@ export async function validateCreateSupplier (schema) {
 export async function validateUpdateSupplier (schema) {
   return supplierUpdateSchema.safeParseAsync(schema)
 }
+
+export async function validateGetIdSupplier (schema) {
+  return supplierGetIdSchema.safeParseAsync(schema)
+}
+

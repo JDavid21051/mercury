@@ -14,6 +14,7 @@
 
 export const FIELD_NAME_CONTROL = {
   supplier: {
+    allFields: ['BIN_TO_UUID(uuid) as id', 'nit', 'name'],
     fields: ['uuid', 'name', 'nit'],
     order: 'name'
   }

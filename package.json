@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node server-with-mysql.js"
+    "start": "node server-with-mysql.js",
+    "develop": "node --watch server-with-mysql.js"
   },
   "keywords": [],
   "author": "",

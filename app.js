@@ -7,16 +7,25 @@ import express, { json } from 'express' // require -> commonJS
 import { corsMiddleware } from './src/core/middlewares/cors.js'
 import { createSupplierRouter } from './src/core/routes/supplier-routes.js'
 import 'dotenv/config'
+import { SERVER_PORT } from './src/core/port.js'
+import { createPingRouter } from './src/core/routes/ping-routes.js'
+import { createApiRouter } from './src/core/routes/base-routes.js'
 
 export const createApp = ({
   supplier
 }) => {
   const app = express()
-  const PORT = process.env.PORT ?? 3000
+  const PORT = process.env.PORT ?? SERVER_PORT
+
+  app.disable('x-powered-by')
 
   app.use(json())
+
   app.use(corsMiddleware())
-  app.disable('x-powered-by')
+
+  app.use('/ping', createPingRouter())
+
+  app.use('/api', createApiRouter())
 
   app.use('/api/supplier', createSupplierRouter({ supplier }))
 
@@ -26,6 +35,6 @@ export const createApp = ({
   })
 
   app.listen(PORT, () => {
-    console.log(`server listening on port ${PORT} on http://localhost:${PORT} path`)
+    console.log('server running on port ' + SERVER_PORT)
   })
 }

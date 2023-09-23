@@ -23,48 +23,44 @@ export class SupplierModel {
   static async getAll () {
     try {
       const [suppliers] = await connection.query(
-        'SELECT BIN_TO_UUID(uuid) as id, nit, name FROM supplier Order BY ? DESC;',
+        'SELECT BIN_TO_UUID(id) as id, nit, name FROM supplier Order BY ? DESC;',
         [FIELD_NAME_CONTROL.supplier.order]
       )
       if (suppliers.length === 0) return []
       return suppliers
     } catch (e) {
-      console.log(e)
-      throw new Error('Error listing a supplier')
+      throw new Error('Error obtaining the list of supervisors.')
     }
   }
 
-  static async getById ({ id }) {
+  static async getById (data) {
     try {
       const [suppliers] = await connection.query(
-        'SELECT BIN_TO_UUID(uuid) as id, nit, name FROM supplier WHERE uuid = id Order BY ? DESC;',
-        [FIELD_NAME_CONTROL.supplier.order]
+        'SELECT BIN_TO_UUID(id) as id, nit, name FROM supplier WHERE id = UUID_TO_BIN(?)  ;',
+        [data.id]
       )
       if (suppliers.length === 0) return []
       return suppliers
     } catch (e) {
-      console.log(e)
-      throw new Error('Error listing a supplier')
+      throw new Error('Error getting supervisor.')
     }
   }
 
   static async create (data) {
     const [suppliers] = await connection.query(
-      'INSERT INTO supplier (uuid, name, nit) VALUES (uuid_to_bin(?), ? ,?)', [
+      'INSERT INTO supplier (id, name, nit) VALUES (UUID_TO_BIN(?), ? ,?)', [
         randomUUID(), data.name, data.nit
       ]
     )
-    console.log(suppliers)
     return suppliers
   }
 
   static async update (data) {
     const [suppliers] = await connection.query(
-      'INSERT INTO supplier (uuid, name, nit) VALUES (uuid_to_bin(?), ? ,?)', [
-        randomUUID(), data.name, data.nit
+      'UPDATE supplier SET name = ?, nit = ? WHERE uuid = UUID_TO_BIN(?) ;', [
+        data.name, data.nit, data.uuid
       ]
     )
-    return suppliers
   }
 
 }
