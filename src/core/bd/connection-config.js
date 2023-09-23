@@ -13,9 +13,8 @@
  */
 
 export const DEFAULT_DB_CONFIG = {
-  database: 'mercurydb',
-  username: 'ify53srvr9e56nx0acu9',
-  host: 'aws.connect.psdb.cloud',
-  password: 'pscale_pw_2p2aqXztqEWFQAla0XnTVhE8D5w0189DeZ6uUM1iGt5',
-  ssl: { 'rejectUnauthorized': true }
+  database: 'mercuryDB',
+  username: 'root',
+  host: 'localhost',
+  password: ''
 }

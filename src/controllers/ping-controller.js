@@ -12,11 +12,11 @@
  * IDE:          WebStorm
  */
 
-import { SERVER_PORT } from '../core/port.js'
+import { PORT } from '../core/port.js'
 
 export class PingController {
 
   basic = async (req, res) => {
-    res.send(`server running successfully, on port  ${SERVER_PORT}`)
+    res.send(`server running successfully, on port  ${PORT}`)
   }
 }
