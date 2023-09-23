@@ -13,14 +13,10 @@
  */
 
 export const DEFAULT_DB_CONFIG = {
-  /* host: 'containers-us-west-120.railway.app',
-  user: 'root',
-  port: 7024,
-  password: 'eOrfMaf4mgg87yOGCHOH',
-  database: 'railway' */
   database: 'mercurydb',
-  user: 'v645as4ntuwkc8ckfis9',
+  user: 'ne3qe4qk1gtc7y3cuadb',
+  username: 'ne3qe4qk1gtc7y3cuadb',
   host: 'aws.connect.psdb.cloud',
-  password: 'pscale_pw_YsgbN3t80mEqclyQJfe46ovkYL4Jlk3rPm18Qso0wiy',
+  password: 'pscale_pw_8MUD6mesinXpy8e12mLlw9ZkwepsUun8czQ7ufWX2iy,',
   ssl: { 'rejectUnauthorized': true }
 }
