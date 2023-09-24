@@ -12,7 +12,11 @@
  * IDE:          WebStorm
  */
 
-import { validateGetIdSupplier, validateUpdateSupplier } from '../core/schemas/supplier-schema.js'
+import {
+  validateAllFieldsSupplier,
+  validateIdSupplier,
+  validatePartialFieldsSupplier
+} from '../core/schemas/supplier-schema.js'
 import { BaseController } from './base-controller.js'
 
 export class SupplierController extends BaseController {
@@ -23,25 +27,25 @@ export class SupplierController extends BaseController {
 
   getAll = async (req, res) => {
     const supplierList = await this.supplierModel.getAll()
-    res.json(supplierList)
+    res.status(202).json(supplierList)
   }
 
   getById = async (req, res) => {
-    const result = await validateGetIdSupplier(req.params)
+    const result = await validateIdSupplier(req.params)
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message ?? result) })
     }
 
     const supplier = await this.supplierModel.getById(result.data)
     if (supplier.length === 0) {
-      return res.status(400).json({ error: { message: 'Error getting supervisor' } })
+      return res.status(400).json({ error: { message: 'Error getting supplier' } })
     }
 
-    res.json(supplier[0])
+    res.status(202).json(supplier[0])
   }
 
   create = async (req, res) => {
-    const result = await validateGetIdSupplier(req.body)
+    const result = await validateAllFieldsSupplier(req.body)
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
@@ -50,11 +54,23 @@ export class SupplierController extends BaseController {
   }
 
   update = async (req, res) => {
-    const result = await validateUpdateSupplier(req.body)
+    const result = await validatePartialFieldsSupplier(req.body)
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
     const supplierUpdated = await this.supplierModel.update(result.data)
-    res.status(201).json(supplierUpdated)
+    res.status(202).json(supplierUpdated)
+  }
+
+  delete = async (req, res) => {
+    const result = await validateIdSupplier(req.body)
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message) })
+    }
+    const supplierDeleted = await this.supplierModel.delete(result.data)
+    if (supplierDeleted.length === 0) {
+      return res.status(400).json({ error: { message: 'Error deleting supervisor' } })
+    }
+    res.sendStatus(204)
   }
 }

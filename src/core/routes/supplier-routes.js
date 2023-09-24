@@ -22,7 +22,8 @@ export const createSupplierRouter = ({ supplier }) => {
   moviesRouter.get('/', controller.getAll)
   moviesRouter.get('/:id', controller.getById)
   moviesRouter.post('/create', controller.create)
-  moviesRouter.put('/update', controller.update)
+  moviesRouter.patch('/update', controller.update)
+  moviesRouter.delete('/delete', controller.delete)
 
   return moviesRouter
 }

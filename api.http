@@ -2,55 +2,38 @@
 GET http://localhost:3000/ping
 
 
+
+
 ### Recuperar todos los provedores                     v
 GET http://localhost:3000/api/supplier
+
+### Recuperar un proveedor por id
+GET http://localhost:3000/api/supplier/24f3653b-3810-48ee-9ee1-d7e10d822a85
+Content-Type: application/json
 
 ### Crear un proveedor
 POST http://localhost:3000/api/supplier/create
 Content-Type: application/json
 
 {
-  "name": "Raul martinez",
-  "nit": "1234512345"
+  "name": "use for delete",
+  "nit": "543543656"
 }
 
-### Consultar un proveedor por id
-GET http://localhost:3000/api/supplier/489dee1f-9601-461d-9547-987d5fbf1f2e
-Content-Type: application/json
-
 ### Actualziar un proveedor
-PUT http://localhost:3000/api/supplier/id
+PATCH http://localhost:3000/api/supplier/update
 Content-Type: application/json
 
 {
-  "uuid": "623c4cb2-b9fe-4e52-ac50-ed8401df22f8",
-  "name": "Juan Pelaez",
-  "nit": "285651111"
+  "id": "28921146-5a76-11ee-8aed-17b8578cb9fb",
+  "nit": 987987987,
+  "name": "Karen Liseth con otro apellido"
 }
 
 ### Delete provider
-PUT http://localhost:3000/api/supplier/id
+DELETE http://localhost:3000/api/supplier/delete
 Content-Type: application/json
 
-[
-  {
-    "id": "489dee1f-9601-461d-9547-987d5fbf1f2e",
-    "nit": "285651111",
-    "name": "Juan Pelaez"
-  },
-  {
-    "id": "540dc78e-adff-4826-af93-1f63f84e6277",
-    "nit": "285651111",
-    "name": "Juan Pelaez"
-  },
-  {
-    "id": "623c4cb2-b9fe-4e52-ac50-ed8401df22f8",
-    "nit": "285651111",
-    "name": "Juan Pelaez"
-  },
-  {
-    "id": "a2f0e243-5dc8-4342-9708-8061e754b1b2",
-    "nit": "285651111",
-    "name": "David Pelaez"
-  }
-]
+{
+  "id": "2b28606d-4235-4641-8465-99ead4e35287"
+}

@@ -47,20 +47,50 @@ export class SupplierModel {
   }
 
   static async create (data) {
-    const [suppliers] = await connection.query(
-      'INSERT INTO supplier (id, name, nit) VALUES (UUID_TO_BIN(?), ? ,?)', [
-        randomUUID(), data.name, data.nit
-      ]
-    )
-    return suppliers
+    try {
+      const [suppliers] = await connection.query(
+        'INSERT INTO supplier (id, name, nit) VALUES (UUID_TO_BIN(?), ? ,?)', [
+          randomUUID(), data.name, data.nit
+        ]
+      )
+      return suppliers
+    } catch (e) {
+      throw new Error('Error creating supervisor.')
+    }
+
   }
 
   static async update (data) {
-    const [suppliers] = await connection.query(
-      'UPDATE supplier SET name = ?, nit = ? WHERE uuid = UUID_TO_BIN(?) ;', [
-        data.name, data.nit, data.uuid
-      ]
-    )
+    try {
+      const [result] = await connection.query(
+        'UPDATE supplier SET name = ?, nit = ? WHERE id = UUID_TO_BIN(?) ;', [
+          data.name, data.nit, data.id
+        ]
+      )
+      if (result.affectedRows === 0) return []
+      return {
+        id: data.id,
+        name: data.name,
+        nit: data.nit
+      }
+    } catch (e) {
+      throw new Error('Error updating supervisor.')
+    }
+  }
+
+  // TODO: Elimine o no un registro devuelve 204
+  static async delete (data) {
+    try {
+      const [result] = await connection.query(
+        'DELETE FROM supplier WHERE id = UUID_TO_BIN(?) ;', [
+          data.id
+        ]
+      )
+      if (result.affectedRows === 0) return []
+      return result
+    } catch (e) {
+      throw new Error('Error deleting supervisor.')
+    }
   }
 
 }

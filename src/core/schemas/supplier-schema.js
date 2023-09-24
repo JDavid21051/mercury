@@ -38,15 +38,15 @@ const supplierUpdateSchema = z.object({
   nit: z.string(ERRORS_SCHEMA.supplier.nit).min(9).max(10)
 }) */
 
-export async function validateCreateSupplier (schema) {
+export async function validateAllFieldsSupplier (schema) {
   return supplierCreateSchema.safeParseAsync(schema)
 }
 
-export async function validateUpdateSupplier (schema) {
+export async function validatePartialFieldsSupplier (schema) {
   return supplierUpdateSchema.safeParseAsync(schema)
 }
 
-export async function validateGetIdSupplier (schema) {
+export async function validateIdSupplier (schema) {
   return supplierGetIdSchema.safeParseAsync(schema)
 }
 
