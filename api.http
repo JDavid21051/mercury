@@ -1,5 +1,5 @@
 ### Ping
-GET http://localhost:3000/api/ping
+GET http://localhost:3000/ping
 
 
 ### Recuperar todos los provedores                     v
