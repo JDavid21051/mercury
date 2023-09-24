@@ -1,9 +1,6 @@
 ### Ping
 GET http://localhost:3000/ping
 
-
-
-
 ### Recuperar todos los provedores                     v
 GET http://localhost:3000/api/supplier
 
@@ -26,8 +23,8 @@ Content-Type: application/json
 
 {
   "id": "28921146-5a76-11ee-8aed-17b8578cb9fb",
-  "nit": 987987987,
-  "name": "Karen Liseth con otro apellido"
+  "nit": "987987987",
+  "name": "Karen a secas"
 }
 
 ### Delete provider
@@ -35,5 +32,5 @@ DELETE http://localhost:3000/api/supplier/delete
 Content-Type: application/json
 
 {
-  "id": "2b28606d-4235-4641-8465-99ead4e35287"
+  "id": "28921146-5a76-11ee-8aed-17b8578cb9fb"
 }

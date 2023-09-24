@@ -29,7 +29,7 @@ export class SupplierModel {
       if (suppliers.length === 0) return []
       return suppliers
     } catch (e) {
-      throw new Error('Error obtaining the list of supervisors.')
+      throw new Error('Error getting the list of supervisors.')
     }
   }
 
@@ -78,7 +78,6 @@ export class SupplierModel {
     }
   }
 
-  // TODO: Elimine o no un registro devuelve 204
   static async delete (data) {
     try {
       const [result] = await connection.query(
