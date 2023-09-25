@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24-sep-2023, 22:56:24
+    Author     : juanpelaezcumbe
+*/
+
+@import url('./global/header.css');
+
+@import url('./global/modal.css');
+
+
+
+body {
+  box-sizing: content-box;
+  background-color: #202020;
+}
