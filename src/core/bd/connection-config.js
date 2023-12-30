@@ -13,7 +13,7 @@
  */
 
 export const DEFAULT_DB_CONFIG = {
-  database: 'mercuryBillDB',
+  database: 'balanace_devdb',
   user: 'root',
   host: 'localhost',
   port: 3306,

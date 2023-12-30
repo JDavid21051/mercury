@@ -9,9 +9,11 @@ import { createSupplierRouter } from './src/core/routes/supplier-routes.js'
 import 'dotenv/config'
 import { createPingRouter } from './src/core/routes/ping-routes.js'
 import { createApiRouter } from './src/core/routes/base-routes.js'
+import { createUsersRouter } from './src/core/routes/user-router.js'
 
 export const createApp = ({
-  supplier
+  supplier,
+  users
 }) => {
   const app = express()
   const PORT = process.env.PORT ?? 3000
@@ -27,6 +29,8 @@ export const createApp = ({
   app.use('/api', createApiRouter())
 
   app.use('/api/supplier', createSupplierRouter({ supplier }))
+
+  app.use('/api/users', createUsersRouter({ users }))
 
   app.use((req, res) => {
     res.setHeader('Content-Type', 'text/html')
