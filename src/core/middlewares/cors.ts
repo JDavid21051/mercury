@@ -14,8 +14,12 @@
 
 import cors from 'cors'
 
+export const SERVER_PORT = 3000;
+const SERVER_NAME = 'http://localhost:';
+const FULL_SERVER_NAME = SERVER_NAME + SERVER_PORT;
+
 const ACCEPTED_ORIGINS = [
-  'http://localhost:3000',
+  FULL_SERVER_NAME,
   'http://localhost:8008'
 ]
 

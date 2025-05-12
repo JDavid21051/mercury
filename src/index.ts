@@ -7,31 +7,30 @@
  * tsx, ts, node, jsx, js, json
  */
 
-import express, { Express, json } from 'express'
-import diaryRouter from './routes/diaries'
-import supplier_router from './routes/supplier'
-import { corsMiddleware } from './core/middlewares/cors'
+import express, {Express, json} from 'express';
+import diaryRouter from './routes/diaries';
+import supplier_router from './routes/supplier';
+import {corsMiddleware, SERVER_PORT} from './core/middlewares/cors';
 
-const appServer: Express = express()
-const PORT = 3000
+const appServer: Express = express();
 
-appServer.use(json()) // middleware que transforma la req.body a un json
-appServer.use(corsMiddleware()) // middleware que soporta la insidencia de cros
-appServer.disable('x-powered-by')
+appServer.use(json()); // middleware que transforma la req.body a un json
+appServer.use(corsMiddleware()); // middleware que soporta la insidencia de cros
+appServer.disable('x-powered-by');
 
-appServer.use('/api/diaries', diaryRouter)
-appServer.use('/api/supplier', supplier_router)
+appServer.use('/api/diaries', diaryRouter);
+appServer.use('/api/supplier', supplier_router);
 
 appServer.get('/ping', (_req, res) => {
-  const pongResult = {
-    _req,
-    res,
-    PORT
-  }
-  res.send(pongResult)
-  console.log(pongResult)
-})
+    const pongResult = {
+        _req,
+        res,
+        SERVER_PORT,
+    };
+    console.log(pongResult);
+    res.send(pongResult);
+});
 
-appServer.listen(PORT, (): void => {
-  console.log(`Server running on port ${PORT}`)
-})
+appServer.listen(SERVER_PORT, (): void => {
+    console.log(`Server running on port ${SERVER_PORT}`);
+});
